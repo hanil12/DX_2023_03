@@ -2,14 +2,21 @@
 class CircleCollider
 {
 public:
-	// 타입변환생성자
+	CircleCollider() {}
+	CircleCollider(float radius, Vector2 center);
+	~CircleCollider();
 
 	void Update();
-	void Render(HDC);
+	void Render(HDC hdc);
+
+	void SetCenter(Vector2 pos) { _center = pos; }
+	const Vector2& GetCenter() { return _center; }
+
+	void SetRadius(float radius) { _radius = radius; }
+	float GetRadius() { return _radius; }
 
 private:
-	// 멤버변수?
-	float _radius;
-	Vector2 _center;
+	float _radius = 0.0f;
+	Vector2 _center = {0.0f,0.0f};
 };
 
