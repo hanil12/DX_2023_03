@@ -24,17 +24,17 @@
     <ClInclude Include="Resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="2302_WINAPI.h">
+    <ClInclude Include="2303_WINAPI.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="2302_WINAPI.cpp">
+    <ClCompile Include="2303_WINAPI.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="2302_WINAPI.rc">
+    <ResourceCompile Include="2303_WINAPI.rc">
       <Filter>리소스 파일</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -42,7 +42,7 @@
     <Image Include="small.ico">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="2302_WINAPI.ico">
+    <Image Include="2303_WINAPI.ico">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

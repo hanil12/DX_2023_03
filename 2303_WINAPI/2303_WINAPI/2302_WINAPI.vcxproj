@@ -24,6 +24,7 @@
     <ProjectGuid>{760791e2-301f-470b-9634-f662542f2dd6}</ProjectGuid>
     <RootNamespace>My2302WINAPI</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>2303_WINAPI</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -139,19 +140,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="2302_WINAPI.h" />
+    <ClInclude Include="2303_WINAPI.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="2302_WINAPI.cpp" />
+    <ClCompile Include="2303_WINAPI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="2302_WINAPI.rc" />
+    <ResourceCompile Include="2303_WINAPI.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="2302_WINAPI.ico" />
+    <Image Include="2303_WINAPI.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

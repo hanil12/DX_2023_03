@@ -1,8 +1,8 @@
-﻿// 2302_WINAPI.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+﻿// 2303_WINAPI.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
 #include "framework.h"
-#include "2302_WINAPI.h"
+#include "2303_WINAPI.h"
 
 #define MAX_LOADSTRING 100
 

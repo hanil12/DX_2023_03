@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33214.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2302_WINAPI", "2302_WINAPI\2302_WINAPI.vcxproj", "{760791E2-301F-470B-9634-F662542F2DD6}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2303_WINAPI", "2303_WINAPI\2302_WINAPI.vcxproj", "{760791E2-301F-470B-9634-F662542F2DD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3BD54CC1-2510-40AB-80BC-8B5CFAF45F28}
+		SolutionGuid = {54CB42A9-D95D-4359-BEC1-74FD3FBB031C}
 	EndGlobalSection
 EndGlobal
