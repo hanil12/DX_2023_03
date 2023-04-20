@@ -56,11 +56,17 @@ public:
 	}
 
 
-	float Length() const
+	float Length()const
 	{
 		float result = sqrtf(x * x + y * y);
 
 		return result;
+	}
+	float Distance(const Vector2& other) const
+	{
+		Vector2 result = *this - other;
+
+		return result.Length();
 	}
 
 	float Dot(const Vector2& other) const
