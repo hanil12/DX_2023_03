@@ -153,6 +153,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="2303_WINAPI.h" />
+    <ClInclude Include="Math\Line.h" />
+    <ClInclude Include="Scene\LineScene.h" />
     <ClInclude Include="Math\CircleCollider.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Math\RectCollider.h" />
@@ -166,6 +168,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="2303_WINAPI.cpp" />
+    <ClCompile Include="Math\Line.cpp" />
+    <ClCompile Include="Scene\LineScene.cpp" />
     <ClCompile Include="Math\CircleCollider.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -31,10 +31,16 @@ void PaintScene::Update()
 		_circle->SetGreen();
 	}
 
-	if(_rect->IsCollision(mousePos))
+	if (_rect->IsCollision(_mouseRect))
+	{
 		_rect->SetRed();
+		_mouseRect->SetRed();
+	}
 	else
+	{
 		_rect->SetGreen();
+		_mouseRect->SetGreen();
+	}
 }
 
 void PaintScene::Render(HDC hdc)

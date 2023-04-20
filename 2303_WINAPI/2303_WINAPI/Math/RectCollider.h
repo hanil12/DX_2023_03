@@ -15,6 +15,7 @@ public:
 
 	bool IsCollision(const Vector2& pos);
 	bool IsCollision(shared_ptr<RectCollider> other);
+	bool IsCollision(shared_ptr<class CircleCollider> other);
 
 	void SetCenter(const Vector2& center);
 	Vector2 GetCenter() { return _center;}

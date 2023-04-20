@@ -42,6 +42,17 @@ bool RectCollider::IsCollision(const Vector2& pos)
 
 bool RectCollider::IsCollision(shared_ptr<RectCollider> other)
 {
+	if(Left() > other->Right() || Right() < other->Left())
+		return false;
+
+	if(Top() > other->Bottom() || Bottom() < other->Top())
+		return false;
+
+	return true;
+}
+
+bool RectCollider::IsCollision(shared_ptr<CircleCollider> other)
+{
 	return false;
 }
 

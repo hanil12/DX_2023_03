@@ -44,6 +44,11 @@ bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
 	return distance < (_radius + other->_radius);
 }
 
+bool CircleCollider::IsCollision(shared_ptr<RectCollider> other)
+{
+	return other->IsCollision(shared_from_this());
+}
+
 void CircleCollider::CreatePens()
 {
 	_curPenIdex = 0;
