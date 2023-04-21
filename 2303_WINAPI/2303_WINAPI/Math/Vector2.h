@@ -88,6 +88,21 @@ public:
 		return result;
 	}
 
+	Vector2 NorMalVector2() const
+	{
+		Vector2 result;
+		result.x = x / Length();
+		result.y = y / Length();
+
+		return result;
+	}
+
+	void Normalize()
+	{
+		x /= Length();
+		y /= Length();
+	}
+
 public:
 	float x = 0.0f;
 	float y = 0.0f;

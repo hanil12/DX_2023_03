@@ -20,27 +20,19 @@ void PaintScene::Update()
 	_mouseCircle->SetCenter(lerpPos);
 	_mouseRect->SetCenter(lerpPos);
 
-	if (_mouseCircle->IsCollision(_circle))
+	//shared_ptr<CircleCollider> dcCircle = dynamic_pointer_cast<CircleCollider>(_circle);
+
+	if (_mouseCircle->IsCollision(_rect))
 	{
 		_mouseCircle->SetRed();
-		_circle->SetRed();
+		_rect->SetRed();
 	}
 	else
 	{
 		_mouseCircle->SetGreen();
-		_circle->SetGreen();
+		_rect->SetGreen();
 	}
 
-	if (_rect->IsCollision(_mouseRect))
-	{
-		_rect->SetRed();
-		_mouseRect->SetRed();
-	}
-	else
-	{
-		_rect->SetGreen();
-		_mouseRect->SetGreen();
-	}
 }
 
 void PaintScene::Render(HDC hdc)
