@@ -31,6 +31,10 @@ using namespace std;
 
 #include "Types.h"
 
+// Object
+#include "Object/Bullet.h"
+#include "Object/Cannon.h"
+
 // Scene
 #include "Scene/Scene.h"
 
