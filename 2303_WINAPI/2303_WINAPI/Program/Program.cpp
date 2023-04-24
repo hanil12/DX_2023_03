@@ -3,13 +3,14 @@
 #include "Scene/PaintScene.h"
 #include "Scene/LineScene.h"
 #include "Scene/LineCollisionScene.h"
+#include "Scene/CannonScene.h"
 
 #include "Program.h"
 
 Program::Program()
 {
 	// ¾À ¹Ù²Ù±â
-	_scene = make_shared<LineCollisionScene>();
+	_scene = make_shared<CannonScene>();
 }
 
 Program::~Program()

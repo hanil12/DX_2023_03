@@ -1,4 +1,6 @@
 #pragma once
+#include "../Types.h"
+
 class Line
 {
 public:
@@ -10,6 +12,8 @@ public:
 
 	void SetGreen() { _curPenIdex = 0; }
 	void SetRed() { _curPenIdex = 1; }
+
+	HitResult IsCollision(shared_ptr<Line> other);
 
 public:
 	void CreatePens();

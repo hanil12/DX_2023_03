@@ -103,6 +103,8 @@ public:
 		y /= Length();
 	}
 
+	bool IsBetween(Vector2 a, Vector2 b);
+
 public:
 	float x = 0.0f;
 	float y = 0.0f;

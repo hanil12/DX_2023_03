@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="2303_WINAPI.h" />
+    <ClInclude Include="Scene\CannonScene.h" />
     <ClInclude Include="Scene\LineCollisionScene.h" />
     <ClInclude Include="Math\Collider.h" />
     <ClInclude Include="Math\Line.h" />
@@ -170,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="2303_WINAPI.cpp" />
+    <ClCompile Include="Scene\CannonScene.cpp" />
     <ClCompile Include="Scene\LineCollisionScene.cpp" />
     <ClCompile Include="Math\Collider.cpp" />
     <ClCompile Include="Math\Line.cpp" />
