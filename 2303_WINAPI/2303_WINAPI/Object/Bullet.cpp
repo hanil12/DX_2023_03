@@ -22,10 +22,10 @@ void Bullet::Update()
 	_circle->SetCenter(_pos);
 	_circle->Update();
 
-	//if(_pos.x > WIN_WIDTH || _pos.x < 0)
-	//	_isActive = false;
-	//if(_pos.y > WIN_HEIGHT || _pos.y < 0)
-	//	_isActive = false;
+	if(_pos.x > WIN_WIDTH || _pos.x < 0)
+		_direction.x = -_direction.x;
+	if(_pos.y > WIN_HEIGHT || _pos.y < 0)
+		_direction.y = -_direction.y;
 }
 
 void Bullet::Render(HDC hdc)

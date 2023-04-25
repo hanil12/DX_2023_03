@@ -42,3 +42,4 @@ using namespace std;
 #include "Program/Program.h"
 
 extern Vector2 mousePos;
+extern HWND hWnd;

@@ -7,14 +7,23 @@
 
 #include "Program.h"
 
+HDC Program::_backBuffer = nullptr; 
 Program::Program()
 {
+	HDC hdc = GetDC(hWnd);
+
+	_backBuffer = CreateCompatibleDC(hdc);
+	_hBit = CreateCompatibleBitmap(hdc, WIN_WIDTH, WIN_HEIGHT);
+	SelectObject(_backBuffer, _hBit);
+
 	// ¾À ¹Ù²Ù±â
 	_scene = make_shared<CannonScene>();
 }
 
 Program::~Program()
 {
+	DeleteObject(_backBuffer);
+	DeleteObject(_hBit);
 }
 
 void Program::Update()
@@ -24,5 +33,14 @@ void Program::Update()
 
 void Program::Render(HDC hdc)
 {
-	_scene->Render(hdc);
+	PatBlt(_backBuffer, 0,0,WIN_WIDTH, WIN_HEIGHT, BLACKNESS);
+
+	_scene->Render(_backBuffer);
+
+	BitBlt(
+		hdc,
+		0,0,WIN_WIDTH, WIN_HEIGHT,
+		_backBuffer, 0, 0,
+		SRCCOPY
+	);
 }
