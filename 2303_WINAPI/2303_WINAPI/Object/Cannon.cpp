@@ -8,7 +8,12 @@ Cannon::Cannon()
 	_barrel = make_shared<Line>(_body->GetCenter(), barrelEnd);
 	_direction = (_barrel->_endPos - _barrel->_startPos).NorMalVector2();
 
-	_bullet = make_shared<Bullet>();
+	for (int i = 0; i < 30; i++)
+	{
+		shared_ptr<Bullet> bullet = make_shared<Bullet>();
+		bullet->SetActive(false);
+		_bullets.push_back(bullet);
+	}
 }
 
 Cannon::~Cannon()
@@ -27,7 +32,10 @@ void Cannon::Update()
 	_body->Update();
 	_barrel->Update();
 
-	_bullet->Update();
+	for (auto bullet : _bullets)
+	{
+		bullet->Update();
+	}
 }
 
 void Cannon::Render(HDC hdc)
@@ -35,7 +43,10 @@ void Cannon::Render(HDC hdc)
 	_barrel->Render(hdc);
 	_body->Render(hdc);
 
-	_bullet->Render(hdc);
+	for (auto bullet : _bullets)
+	{
+		bullet->Render(hdc);
+	}
 }
 
 void Cannon::MoveByInput()
@@ -63,10 +74,28 @@ void Cannon::MoveByInput()
 
 void Cannon::Fire()
 {
-	if (GetAsyncKeyState(VK_SPACE))
+	if (GetAsyncKeyState(VK_SPACE) & 0x0001)
 	{
 		Vector2 muzzle = _barrel->_endPos;
-		_bullet->SetPos(muzzle);
-		_bullet->SetDirection(_direction);
+
+		shared_ptr<Bullet> curBullet = SetBullet();
+
+		if (curBullet == nullptr)
+			return;
+
+		curBullet->SetPos(muzzle);
+		curBullet->SetDirection(_direction);
+		curBullet->SetActive(true);
 	}
+}
+
+shared_ptr<Bullet> Cannon::SetBullet()
+{
+	for (auto bullet : _bullets)
+	{
+		if(bullet->IsActive() == false)
+			return bullet;
+	}
+
+	return nullptr;
 }
