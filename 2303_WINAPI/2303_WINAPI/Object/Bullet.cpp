@@ -17,15 +17,15 @@ void Bullet::Update()
 		return;
 
 	_pos += _direction * _speed;
-	_direction.y += GRAVITY;
+	//_direction.y += GRAVITY;
 
 	_circle->SetCenter(_pos);
 	_circle->Update();
 
-	if(_pos.x > WIN_WIDTH || _pos.x < 0)
-		_isActive = false;
-	if(_pos.y > WIN_HEIGHT || _pos.y < 0)
-		_isActive = false;
+	//if(_pos.x > WIN_WIDTH || _pos.x < 0)
+	//	_isActive = false;
+	//if(_pos.y > WIN_HEIGHT || _pos.y < 0)
+	//	_isActive = false;
 }
 
 void Bullet::Render(HDC hdc)
@@ -34,4 +34,15 @@ void Bullet::Render(HDC hdc)
 		return;
 
 	_circle->Render(hdc);
+}
+
+bool Bullet::AttackCannon(shared_ptr<Cannon> cannon)
+{
+	if (_circle->IsCollision(cannon->GetCol()) && cannon->IsDead() == false)
+	{
+		_isActive = false;
+		return true;
+	}
+
+	return false;
 }

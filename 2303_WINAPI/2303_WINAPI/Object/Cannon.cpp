@@ -22,8 +22,14 @@ Cannon::~Cannon()
 
 void Cannon::Update()
 {
-	MoveByInput();
-	Fire();
+	if(IsDead())
+		return;
+
+	if (_isControll)
+	{
+		MoveByInput();
+		Fire();
+	}
 
 	_body->SetCenter(_pos);
 	_barrel->_startPos = _pos;
@@ -40,6 +46,9 @@ void Cannon::Update()
 
 void Cannon::Render(HDC hdc)
 {
+	if (IsDead())
+		return;
+
 	_barrel->Render(hdc);
 	_body->Render(hdc);
 
@@ -74,7 +83,17 @@ void Cannon::MoveByInput()
 
 void Cannon::Fire()
 {
-	if (GetAsyncKeyState(VK_SPACE) & 0x0001)
+	if ((GetAsyncKeyState(VK_SPACE) & 0x8000))
+	{
+		_spacePress = true;
+		_spaceUp = false;
+	}
+	else
+	{
+		_spaceUp = true;
+	}
+
+	if (_spacePress == true && _spaceUp == true)
 	{
 		Vector2 muzzle = _barrel->_endPos;
 
@@ -86,6 +105,9 @@ void Cannon::Fire()
 		curBullet->SetPos(muzzle);
 		curBullet->SetDirection(_direction);
 		curBullet->SetActive(true);
+
+		_spacePress = false;
+		_spaceUp = false;
 	}
 }
 

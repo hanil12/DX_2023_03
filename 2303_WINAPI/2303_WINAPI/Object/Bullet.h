@@ -14,6 +14,8 @@ public:
 	void SetActive(bool value) { _isActive = value;}
 	bool IsActive() { return _isActive; }
 
+	bool AttackCannon(shared_ptr<class Cannon> cannon);
+
 private:
 	bool _isActive = false;
 
@@ -21,6 +23,6 @@ private:
 	Vector2 _direction = Vector2();
 	float _speed = 10.0f;
 
-	shared_ptr<CircleCollider> _circle;
+	shared_ptr<Collider> _circle;
 };
 
