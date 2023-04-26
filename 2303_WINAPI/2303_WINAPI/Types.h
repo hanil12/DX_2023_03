@@ -13,6 +13,7 @@
 
 #define RED		 RGB(255,0,0)
 #define GREEN	 RGB(0,255,0)
+#define GREY	 RGB(100,100,100)
 
 struct HitResult
 {

@@ -4,6 +4,7 @@
 #include "Scene/LineScene.h"
 #include "Scene/LineCollisionScene.h"
 #include "Scene/CannonScene.h"
+#include "Scene/MazeScene.h"
 
 #include "Program.h"
 
@@ -17,7 +18,7 @@ Program::Program()
 	SelectObject(_backBuffer, _hBit);
 
 	// ¾À ¹Ù²Ù±â
-	_scene = make_shared<CannonScene>();
+	_scene = make_shared<MazeScene>();
 }
 
 Program::~Program()
