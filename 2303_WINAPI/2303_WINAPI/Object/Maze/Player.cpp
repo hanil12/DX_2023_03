@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "Player.h"
 #include <stack>
+#include <queue>
 
 Player::Player(shared_ptr<Maze> maze)
 : _maze(maze)
@@ -35,6 +36,12 @@ void Player::Update()
 
 	Vector2 temp = _path[_pathIndex];
 
+	if (_pathIndex > 1)
+	{
+		Vector2 footPrint = _path[_pathIndex - 1];
+		_maze.lock()->Block(footPrint.x, footPrint.y)->SetType(MazeBlock::BlockType::FOOTPRINT);
+	}
+
 	_maze.lock()->Block(temp.x, temp.y)->SetType(MazeBlock::BlockType::PLAYER);
 }
 
@@ -66,6 +73,7 @@ void Player::RightHand()
 		{
 			curDir = static_cast<Dir>(newDir);
 			pos += newDirVector;
+			_maze.lock()->Block(pos.x, pos.y)->SetType(MazeBlock::BlockType::VISITED);
 			_path.push_back(pos);
 		}
 
@@ -73,6 +81,7 @@ void Player::RightHand()
 		else if (Cango(pos + oldDirVector))
 		{
 			pos += oldDirVector;
+			_maze.lock()->Block(pos.x, pos.y)->SetType(MazeBlock::BlockType::VISITED);
 			_path.push_back(pos);
 		}
 
@@ -110,6 +119,25 @@ void Player::RightHand()
 	std::reverse(_path.begin(), _path.end());
 
 	return;
+}
+
+void Player::BFS()
+{
+	Vector2 poolCount = _maze.lock()->PoolCount();
+	int poolCountX = (int)poolCount.x;
+	int poolCountY = (int)poolCount.y;
+	_discovered = vector<vector<bool>>(poolCountY, vector<bool>(poolCountX, false));
+	_parent = vector<vector<Vector2>>(poolCountY, vector<Vector2>(poolCountX, Vector2(-1,-1)));
+
+	queue<Vector2> q;
+	q.push(_startPos);
+	_discovered[_startPos.y][_startPos.x] = true;
+	_parent[_startPos.y][_startPos.x] = _startPos;
+
+	while (true)
+	{
+		// 
+	}
 }
 
 bool Player::Cango(Vector2 pos)

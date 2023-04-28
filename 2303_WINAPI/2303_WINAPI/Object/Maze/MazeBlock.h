@@ -8,6 +8,8 @@ public:
 		DISABLE,
 		PLAYER,
 		END,
+		FOOTPRINT,
+		VISITED,
 		NONE
 	};
 
