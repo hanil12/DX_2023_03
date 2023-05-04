@@ -20,8 +20,6 @@ Maze::Maze()
 	}
 
 	CreateMaze();
-
-	_blocks[_poolCountY - 2][_poolCountX - 2]->SetType(MazeBlock::BlockType::END);
 }
 
 Maze::~Maze()
@@ -49,6 +47,14 @@ void Maze::Render(HDC hdc)
 // Maze for Programmer
 void Maze::CreateMaze()
 {
+	for (int y = 0; y < _poolCountY; y++)
+	{
+		for (int x = 0; x < _poolCountX; x++)
+		{
+			_blocks[y][x]->SetType(MazeBlock::BlockType::DISABLE);
+		}
+	}
+
 	// 노드 뚫기
 	for (int y = 0; y < _poolCountY; y++)
 	{
@@ -61,37 +67,39 @@ void Maze::CreateMaze()
 		}
 	}
 
-	for (int y = 0; y < _poolCountY; y++)
-	{
-		for (int x = 0; x < _poolCountX; x++)
-		{
-			if(x % 2 == 0 || y % 2 == 0)
-				continue;
+	//for (int y = 0; y < _poolCountY; y++)
+	//{
+	//	for (int x = 0; x < _poolCountX; x++)
+	//	{
+	//		if(x % 2 == 0 || y % 2 == 0)
+	//			continue;
 
-			// 마지막 도착점 처리
-			if(x == _poolCountX - 2 && y == _poolCountY - 2)
-				continue;
+	//		// 마지막 도착점 처리
+	//		if(x == _poolCountX - 2 && y == _poolCountY - 2)
+	//			continue;
 
-			// 오른쪽 끝은 다 뚫려있게
-			if (x == _poolCountX - 2)
-			{
-				_blocks[y + 1][x]->SetType(MazeBlock::BlockType::ABLE);
-				continue;
-			}
+	//		// 오른쪽 끝은 다 뚫려있게
+	//		if (x == _poolCountX - 2)
+	//		{
+	//			_blocks[y + 1][x]->SetType(MazeBlock::BlockType::ABLE);
+	//			continue;
+	//		}
 
-			// 아래쪽 끝은 다 뚫려있게
-			if (y == _poolCountY - 2)
-			{
-				_blocks[y][x + 1]->SetType(MazeBlock::BlockType::ABLE);
-				continue;
-			}
+	//		// 아래쪽 끝은 다 뚫려있게
+	//		if (y == _poolCountY - 2)
+	//		{
+	//			_blocks[y][x + 1]->SetType(MazeBlock::BlockType::ABLE);
+	//			continue;
+	//		}
 
-			// 한개의 노드 기준 오른쪽 혹은 아래쪽 랜덤으로 길을 뚫는 작업
-			const int randValue = rand() % 2;
-			if(randValue == 0)
-				_blocks[y][x + 1]->SetType(MazeBlock::BlockType::ABLE);
-			else
-				_blocks[y + 1][x]->SetType(MazeBlock::BlockType::ABLE);
-		}
-	}
+	//		// 한개의 노드 기준 오른쪽 혹은 아래쪽 랜덤으로 길을 뚫는 작업
+	//		const int randValue = rand() % 2;
+	//		if(randValue == 0)
+	//			_blocks[y][x + 1]->SetType(MazeBlock::BlockType::ABLE);
+	//		else
+	//			_blocks[y + 1][x]->SetType(MazeBlock::BlockType::ABLE);
+	//	}
+	//}
+
+	_blocks[_poolCountY - 2][_poolCountX - 2]->SetType(MazeBlock::BlockType::END);
 }
