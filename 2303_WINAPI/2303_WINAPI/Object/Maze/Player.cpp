@@ -34,9 +34,9 @@ void Player::Update()
 		_pathIndex = 0;
 		_path.clear();
 
-		_maze.lock()->CreateMaze();
+		_maze.lock()->CreateMaze_Kruskal();
 
-		BFS();
+		Astar();
 
 		return;
 	}
