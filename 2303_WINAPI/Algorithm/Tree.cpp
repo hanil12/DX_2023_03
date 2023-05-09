@@ -100,8 +100,8 @@ void PrintTree(Node* root, int depth)
 		cout<< "-";
 	}
 
-	cout << root->_data << endl;
 
+	cout << root->_data << endl;
 	for (auto node : root->_children)
 	{
 		PrintTree(node, depth + 1);
