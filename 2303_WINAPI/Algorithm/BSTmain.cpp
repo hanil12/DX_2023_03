@@ -18,12 +18,12 @@ using namespace std;
 int main()
 {
 	BST bst;
-	bst.Insert(15);
-	bst.Insert(7);
-	bst.Insert(30);
 	bst.Insert(3);
+	bst.Insert(7);
 	bst.Insert(10);
+	bst.Insert(15);
 	bst.Insert(25);
+	bst.Insert(30);
 	
 	bst.PrintTree(bst._root);
 
