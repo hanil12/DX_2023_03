@@ -1,4 +1,3 @@
-
 Texture2D resource : register(t0);
 SamplerState samp : register(s0);
 
@@ -11,5 +10,9 @@ struct PixelInput
 
 float4 PS(PixelInput input) : SV_TARGET
 {
-	return resource.Sample(samp,input.uv);
+	float2 resultUV;
+	resultUV.x = input.uv.x;
+	resultUV.y = input.uv.y;
+
+	return resource.Sample(samp, resultUV);
 }
