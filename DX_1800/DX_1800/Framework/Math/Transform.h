@@ -22,6 +22,8 @@ public:
 	const Vector2& GetScale() { return _scale; }
 	const float& GetAngle() { return _angle; }
 
+	Vector2 GetWorldPos() const;
+
 	void SetParent(shared_ptr<Transform> parent) { _parent = parent; }
 
 	const XMMATRIX& GetSRT() { return _srtMatrix; }
