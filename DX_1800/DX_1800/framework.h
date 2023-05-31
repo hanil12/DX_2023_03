@@ -68,3 +68,4 @@ using namespace Microsoft::WRL;
 #include "Types.h"
 
 extern HWND hWnd;
+extern Vector2 mousePos;
