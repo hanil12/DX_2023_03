@@ -159,6 +159,7 @@
     <ClInclude Include="Framework\Render\GlobalBuffer.h" />
     <ClInclude Include="Framework\Render\PixelShader.h" />
     <ClInclude Include="Framework\Render\IndexBuffer.h" />
+    <ClInclude Include="Object\Obj\Planet.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Object\BagicObject\Quad.h" />
     <ClInclude Include="Resource.h" />
@@ -191,6 +192,7 @@
     </ClCompile>
     <ClCompile Include="Framework\Render\PixelShader.cpp" />
     <ClCompile Include="Framework\Render\IndexBuffer.cpp" />
+    <ClCompile Include="Object\Obj\Planet.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Framework\Render\VertexBuffer.cpp" />
     <ClCompile Include="Framework\Render\VertexShader.cpp" />

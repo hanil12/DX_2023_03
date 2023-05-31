@@ -18,6 +18,10 @@ public:
 	void AddScale(Vector2 scale) { _scale += scale; }
 	void AddAngle(float angle) { _angle += angle; }
 
+	const Vector2& GetPos() { return _pos; }
+	const Vector2& GetScale() { return _scale; }
+	const float& GetAngle() { return _angle; }
+
 	void SetParent(shared_ptr<Transform> parent) { _parent = parent; }
 
 	const XMMATRIX& GetSRT() { return _srtMatrix; }

@@ -56,6 +56,9 @@ using namespace Microsoft::WRL;
 // Obj
 #include "Object/BagicObject/Quad.h"
 
+// GameObj
+#include "Object/Obj/Planet.h"
+
 // Scene
 #include "Scene/Scene.h"
 

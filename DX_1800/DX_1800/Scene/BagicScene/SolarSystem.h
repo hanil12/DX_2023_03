@@ -9,7 +9,8 @@ public:
 	virtual void Render() override;
 
 private:
-	shared_ptr<Quad> _sun;
-	shared_ptr<Quad> _earth;
+	shared_ptr<Planet> _sun;
+	shared_ptr<Planet> _earth;
+	shared_ptr<Planet> _moon;
 };
 
