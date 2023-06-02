@@ -13,7 +13,7 @@ public:
 	shared_ptr<Transform> GetTransform() { return _transform; }
 
 private:
-	vector<Vertex> _vertices;
+	vector<Vertex_Texture> _vertices;
 	vector<UINT> _indices;
 
 	shared_ptr<VertexBuffer> _vertexBuffer;

@@ -58,6 +58,9 @@ using namespace Microsoft::WRL;
 #include "Framework/TextureMapping/BlendState.h"
 #include "Framework/TextureMapping/StateManager.h"
 
+// Collider
+#include "Framework/Collider/RectCollider.h"
+
 // Obj
 #include "Object/BagicObject/Quad.h"
 

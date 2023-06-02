@@ -99,6 +99,15 @@
     <ClInclude Include="Framework\Utility\InputManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\BagicScene\DunGreedScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Collider\RectCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\BagicScene\ColliderScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX_1800.cpp">
@@ -170,6 +179,15 @@
     <ClCompile Include="Framework\Utility\InputManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\BagicScene\DunGreedScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Collider\RectCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\BagicScene\ColliderScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1800.rc">
@@ -192,10 +210,21 @@
     <Image Include="Resource\Texture\sun.png">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="Resource\Texture\Bow.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\Bullet.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\Player.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\TutorialShader.hlsl" />
     <FxCompile Include="Shader\TextureVS.hlsl" />
     <FxCompile Include="Shader\TexturePS.hlsl" />
+    <FxCompile Include="Shader\ColliderVS.hlsl" />
+    <FxCompile Include="Shader\ColliderPS.hlsl" />
   </ItemGroup>
 </Project>
