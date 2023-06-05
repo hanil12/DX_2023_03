@@ -59,6 +59,8 @@ using namespace Microsoft::WRL;
 #include "Framework/TextureMapping/StateManager.h"
 
 // Collider
+#include "Framework/Collider/Collider.h"
+#include "Framework/Collider/CircleCollider.h"
 #include "Framework/Collider/RectCollider.h"
 
 // Obj

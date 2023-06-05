@@ -3,8 +3,8 @@
 
 ColliderScene::ColliderScene()
 {
-	_rectCollider = make_shared<RectCollider>(Vector2(100,80));
-	_rectCollider->GetTranform()->SetPosition(CENTER);
+	_rectCollider = make_shared<CircleCollider>(50);
+	_rectCollider->GetTransform()->SetPosition(CENTER);
 }
 
 ColliderScene::~ColliderScene()
