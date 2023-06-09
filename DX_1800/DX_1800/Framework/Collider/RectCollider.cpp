@@ -127,6 +127,9 @@ bool RectCollider::IsOBB(shared_ptr<RectCollider> col)
     OBB_Info aInfo = GetOBB_info();
     OBB_Info bInfo = col->GetOBB_info();
 
+    // 45 75
+    // 135, 225
+
     Vector2 aToB = aInfo.pos - bInfo.pos;
 
     Vector2 nea1 = aInfo.direction[0];
@@ -138,6 +141,9 @@ bool RectCollider::IsOBB(shared_ptr<RectCollider> col)
     Vector2 neb2 = bInfo.direction[1];
     Vector2 eb1 = neb1 * bInfo.length[0];
     Vector2 eb2 = neb2 * bInfo.length[1];
+
+    if(isnan((ea1 + ea2).Length()) || isnan((eb1 + eb2).Length()))
+        return false;
 
     // nea1 기준으로 투영
     float length = abs(nea1.Dot(aToB));
@@ -167,6 +173,44 @@ bool RectCollider::IsOBB(shared_ptr<RectCollider> col)
     length = abs(neb2.Dot(aToB));
     lengthA = eb2.Length();
     lengthB = SeperateAxis(neb2, ea1, ea2);
+
+    if (length > lengthA + lengthB)
+        return false;
+
+    return true;
+}
+
+bool RectCollider::IsOBB(shared_ptr<CircleCollider> col)
+{
+    OBB_Info info = GetOBB_info();
+    Vector2 circlePos = col->GetWorldPos();
+    float circleRadius = col->GetWorldRadius();
+
+    Vector2 aToB = circlePos - info.pos;
+
+    Vector2 nea1 = info.direction[0];
+    Vector2 ea1 = info.direction[0] * info.length[0];
+    Vector2 nea2 = info.direction[1];
+    Vector2 ea2 = info.direction[1] * info.length[1];
+
+    float vertexLength = (ea1 + ea2).Length();
+
+    if(isnan(vertexLength))
+        return false;
+
+    if(aToB.Length() > circleRadius + vertexLength)
+        return false;
+
+    float length = abs(nea1.Dot(aToB));
+    float lengthA = ea1.Length();
+    float lengthB = circleRadius;
+
+    if(length > lengthA + lengthB)
+        return false;
+
+    length = abs(nea2.Dot(aToB));
+    lengthA = ea2.Length();
+    lengthB = circleRadius;
 
     if (length > lengthA + lengthB)
         return false;
