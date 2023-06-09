@@ -26,7 +26,7 @@ void InputManager::Update()
 		_curState[i] = (key ? 1 : 0);
 
 		byte old = _oldState[i];
-		byte cur = _oldState[i];
+		byte cur = _curState[i];
 
 		if (old == 0 && cur == 1)
 		{
