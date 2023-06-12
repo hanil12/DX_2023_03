@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>
+#include <time.h>
 #include <tchar.h>
 #include <memory>
 #include <vector>
@@ -61,6 +62,7 @@ using namespace Microsoft::WRL;
 
 // TextureMapping
 #include "Framework/TextureMapping/SRV.h"
+#include "Framework/TextureMapping/SRVManager.h"
 #include "Framework/TextureMapping/SamplerState.h"
 #include "Framework/TextureMapping/BlendState.h"
 #include "Framework/TextureMapping/StateManager.h"
