@@ -16,6 +16,7 @@ public:
 private:
 	shared_ptr<CircleCollider> _col;
 
+	shared_ptr<Transform> _trans;
 	shared_ptr<Quad> _quad;
 
 	Vector2 _direction;

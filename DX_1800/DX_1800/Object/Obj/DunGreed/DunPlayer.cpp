@@ -5,13 +5,17 @@
 DunPlayer::DunPlayer()
 {
 	_quad = make_shared<Quad>(L"Resource/Texture/Player.png");
+	_quadTrans = make_shared<Transform>();
+
 	_bowSlot = make_shared<Transform>();
+	_bowSlot->SetParent(_quadTrans);
 
 	_bowQuad = make_shared<Quad>(L"Resource/Texture/Bow.png");
-	_bowQuad->GetTransform()->SetParent(_bowSlot);
+	_bowTrans = make_shared<Transform>();
+	_bowTrans->SetParent(_bowSlot);
 
-	_bowQuad->GetTransform()->SetPosition(Vector2(100.0f,0.0f));
-	_bowQuad->GetTransform()->SetAngle(-PI * 0.75f);
+	_bowTrans->SetPosition(Vector2(100.0f,0.0f));
+	_bowTrans->SetAngle(-PI * 0.75f);
 
 	for (int i = 0; i < 30; i++)
 	{
@@ -29,13 +33,14 @@ void DunPlayer::Update()
 	InPut();
 
 	_quad->Update();
-
-	_bowSlot->SetPosition(_quad->GetTransform()->GetPos());
-	_bowSlot->Update();
+	_quadTrans->Update();
 
 	_bowQuad->Update();
+	_bowTrans->Update();
 
-	Vector2 slotToMousePos = MOUSE_POS - _bowSlot->GetPos();
+	_bowSlot->Update();
+
+	Vector2 slotToMousePos = MOUSE_POS - _bowSlot->GetWorldPos();
 	float angle = slotToMousePos.Angle();
 
 	_bowSlot->SetAngle(angle);
@@ -46,7 +51,10 @@ void DunPlayer::Update()
 
 void DunPlayer::Render()
 {
+	_quadTrans->SetWorldBuffer(0);
 	_quad->Render();
+
+	_bowTrans->SetWorldBuffer(0);
 	_bowQuad->Render();
 
 	for(auto bullet : _bullets)
@@ -57,7 +65,7 @@ void DunPlayer::InPut()
 {
 	if (KEY_DOWN(VK_LBUTTON))
 	{
-		Vector2 start = _bowQuad->GetTransform()->GetWorldPos();
+		Vector2 start = _bowTrans->GetWorldPos();
 		Vector2 direction = (MOUSE_POS - start).NorMalVector2();
 
 		auto iter = std::find_if(_bullets.begin(), _bullets.end(), [](shared_ptr<DunBullet> bullet)-> bool 
