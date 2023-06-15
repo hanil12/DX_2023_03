@@ -61,6 +61,7 @@ using namespace Microsoft::WRL;
 #include "Framework/Render/Shader.h"
 #include "Framework/Render/VertexShader.h"
 #include "Framework/Render/PixelShader.h"
+#include "Framework/Render/ShaderManager.h"
 
 // TextureMapping
 #include "Framework/TextureMapping/SRV.h"
@@ -80,6 +81,8 @@ using namespace Microsoft::WRL;
 // Obj
 #include "Object/BagicObject/Quad.h"
 #include "Object/BagicObject/Sprite.h"
+#include "Object/BagicObject/Sprite_Frame.h"
+#include "Object/BagicObject/Sprite_Clip.h"
 
 // GameObj
 #include "Object/Obj/Planet.h"

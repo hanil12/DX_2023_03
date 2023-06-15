@@ -183,6 +183,9 @@
     <ClInclude Include="Scene\BagicScene\SpriteScene.h" />
     <ClInclude Include="Object\BagicObject\Sprite.h" />
     <ClInclude Include="Framework\Render\Shader.h" />
+    <ClInclude Include="Object\BagicObject\Sprite_Clip.h" />
+    <ClInclude Include="Object\BagicObject\Sprite_Frame.h" />
+    <ClInclude Include="Framework\Render\ShaderManager.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Scene\BagicScene\TutorialScene.h" />
     <ClInclude Include="Framework\Math\Transform.h" />
@@ -237,6 +240,9 @@
     <ClCompile Include="Scene\BagicScene\SpriteScene.cpp" />
     <ClCompile Include="Object\BagicObject\Sprite.cpp" />
     <ClCompile Include="Framework\Render\Shader.cpp" />
+    <ClCompile Include="Object\BagicObject\Sprite_Clip.cpp" />
+    <ClCompile Include="Object\BagicObject\Sprite_Frame.cpp" />
+    <ClCompile Include="Framework\Render\ShaderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1800.rc" />
