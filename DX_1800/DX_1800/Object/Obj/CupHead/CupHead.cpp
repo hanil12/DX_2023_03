@@ -8,6 +8,7 @@ CupHead::CupHead()
 
 	CreateAction("Idle");
 	CreateAction("Run");
+	CreateAction("Jump");
 
 	_col->GetTransform()->SetPosition(CENTER);
 
@@ -28,6 +29,7 @@ CupHead::~CupHead()
 void CupHead::Update()
 {
 	Input();
+	Jump();
 
 	_col->Update();
 	_transform->Update();
@@ -58,11 +60,13 @@ void CupHead::Input()
 		_col->GetTransform()->AddVector2(-RIGHT_VECTOR * _speed * DELTA_TIME);
 		
 		SetLeft();
-		SetAction(State::RUN);
+		if(_state != State::JUMP)
+			SetAction(State::RUN);
 	}
 	else if (KEY_UP('A'))
 	{
-		SetAction(State::IDLE);
+		if (_state != State::JUMP)
+			SetAction(State::IDLE);
 	}
 	
 	if (KEY_PRESS('D'))
@@ -70,13 +74,30 @@ void CupHead::Input()
 		_col->GetTransform()->AddVector2(RIGHT_VECTOR * _speed * DELTA_TIME);
 
 		SetRight();
-		SetAction(State::RUN);
+		if (_state != State::JUMP)
+			SetAction(State::RUN);
 	}
 	else if (KEY_UP('D'))
 	{
-		SetAction(State::IDLE);
+		if (_state != State::JUMP)
+			SetAction(State::IDLE);
 	}
+}
 
+void CupHead::Jump()
+{
+	_jumpPower -= GRAVITY * 9;
+
+	if(_jumpPower < -_maxFalling)
+		_jumpPower = -_maxFalling;
+
+	_col->GetTransform()->AddVector2(Vector2(0.0f,_jumpPower * DELTA_TIME));
+
+	if (KEY_DOWN(VK_SPACE))
+	{
+		_jumpPower = 1500.0f;
+		SetAction(State::JUMP);
+	}
 }
 
 void CupHead::CreateAction(string name, float speed, Action::Type type, CallBack callBack)

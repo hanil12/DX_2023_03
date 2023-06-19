@@ -22,7 +22,6 @@ public:
 		for(auto sprite : _sprites)
 			sprite->SetLeft();
 	}
-
 	void SetRight()
 	{
 		for(auto sprite : _sprites)
@@ -30,12 +29,16 @@ public:
 	}
 
 	void Input();
-
-	void CreateAction(string name, float speed = 0.1f, Action::Type type = Action::Type::LOOP, CallBack callBack = nullptr);
-
+	void Jump();
 	void SetAction(State state);
 
+	shared_ptr<CircleCollider> GetCollider() { return _col; }
+
+	void SetIsFalling(bool value) { _isFalling = value; }
+
 private:
+	void CreateAction(string name, float speed = 0.1f, Action::Type type = Action::Type::LOOP, CallBack callBack = nullptr);
+	
 	shared_ptr<CircleCollider> _col;
 
 	shared_ptr<Transform> _transform;
@@ -46,6 +49,9 @@ private:
 
 	bool _isFalling;
 	bool _isAttack;
+
+	float _jumpPower = 0.0f;
+	float _maxFalling = 800.0f;
 
 	float _speed = 300.0f;
 };
