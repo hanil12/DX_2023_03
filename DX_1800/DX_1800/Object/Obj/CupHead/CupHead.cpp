@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "CupHead.h"
+#include "Cup_Bullet.h"
 
 CupHead::CupHead()
 {
@@ -9,6 +10,8 @@ CupHead::CupHead()
 	CreateAction("Idle");
 	CreateAction("Run");
 	CreateAction("Jump");
+	CreateAction("AimStraightShot", 0.1f, Action::END);
+	_actions[State::ATTACK]->SetEndEvent(std::bind(&CupHead::AttackEnd, this));
 
 	_col->GetTransform()->SetPosition(CENTER);
 
@@ -20,6 +23,8 @@ CupHead::CupHead()
 
 	_sprites[0]->SetLeft();
 	_sprites[1]->SetLeft();
+
+	_bullet = make_shared<Cup_Bullet>();
 }
 
 CupHead::~CupHead()
@@ -38,6 +43,8 @@ void CupHead::Update()
 
 	_sprites[_curState]->SetCurClip(_actions[_curState]->GetCurClip());
 	_sprites[_curState]->Update();
+
+	_bullet->Update();
 }
 
 void CupHead::Render()
@@ -46,6 +53,8 @@ void CupHead::Render()
 	_sprites[_curState]->Render();
 
 	_col->Render();
+
+	_bullet->Render();
 }
 
 void CupHead::PostRender()
@@ -54,6 +63,14 @@ void CupHead::PostRender()
 
 void CupHead::Input()
 {
+	if (KEY_DOWN(VK_LBUTTON) && _isAttack == false)
+	{
+		Attack();
+	}
+
+	if(_isAttack == true)
+		return;
+
 	if (KEY_PRESS('A'))
 	{
 		_col->GetTransform()->AddVector2(-RIGHT_VECTOR * _speed * DELTA_TIME);
@@ -79,9 +96,9 @@ void CupHead::Input()
 
 void CupHead::Jump()
 {
-	if(_isFalling == true)
+	if(_isFalling == true && _isAttack == false)
 		SetAction(State::JUMP);
-	else if(_curState == JUMP && _isFalling == false)
+	else if(_curState == JUMP && _isFalling == false && _isAttack == false)
 		SetAction(State::IDLE);
 
 	_jumpPower -= GRAVITY * 9;
@@ -91,11 +108,28 @@ void CupHead::Jump()
 
 	_col->GetTransform()->AddVector2(Vector2(0.0f,_jumpPower * DELTA_TIME));
 
-	if (KEY_DOWN(VK_SPACE))
+	if (KEY_DOWN(VK_SPACE) && _isAttack == false)
 	{
 		_jumpPower = 1500.0f;
 		_isFalling = true;
 	}
+}
+
+void CupHead::Attack()
+{
+	SetAction(State::ATTACK);
+
+	_isAttack = true;
+
+	_bullet->_isActive = true;
+	_bullet->SetDirtection(RIGHT_VECTOR);
+	_bullet->SetPosition(_col->GetWorldPos());
+}
+
+void CupHead::AttackEnd()
+{
+	_isAttack = false;
+	SetAction(State::IDLE);
 }
 
 void CupHead::CreateAction(string name, float speed, Action::Type type, CallBack callBack)
