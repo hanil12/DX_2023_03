@@ -60,6 +60,7 @@ private:
 
 	float _speed = 300.0f;
 
+	shared_ptr<FilterBuffer> _filterBuffer;
 
 	// Bullet
 	shared_ptr<class Cup_Bullet> _bullet;

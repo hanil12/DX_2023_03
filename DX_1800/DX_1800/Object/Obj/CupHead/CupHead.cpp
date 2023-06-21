@@ -25,6 +25,10 @@ CupHead::CupHead()
 	_sprites[1]->SetLeft();
 
 	_bullet = make_shared<Cup_Bullet>();
+
+	_filterBuffer = make_shared<FilterBuffer>();
+	_filterBuffer->_data.imageSize = _sprites[State::IDLE]->GetImageSize();
+	_filterBuffer->_data.selected = 1;
 }
 
 CupHead::~CupHead()
@@ -45,11 +49,15 @@ void CupHead::Update()
 	_sprites[_curState]->Update();
 
 	_bullet->Update();
+
+	_filterBuffer->Update_Resource();
+	_filterBuffer->_data.value2 += 1;
 }
 
 void CupHead::Render()
 {
 	_transform->SetWorldBuffer(0);
+	_filterBuffer->SetPS_Buffer(2);
 	_sprites[_curState]->Render();
 
 	_col->Render();
@@ -176,6 +184,7 @@ void CupHead::CreateAction(string name, float speed, Action::Type type, CallBack
 	_actions.push_back(action);
 
 	shared_ptr<Sprite_Clip> sprite = make_shared<Sprite_Clip>(srvPath, Vector2(averageW/count, averageH/count));
+	sprite->SetPS(ADD_PS(L"Shader/CupHeadPS.hlsl"));
 	_sprites.push_back(sprite);
 }
 
