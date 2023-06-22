@@ -57,6 +57,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     SRVManager::Create();
     StateManager::Create();
     ShaderManager::Create();
+    EffectManager::Create();
 
     shared_ptr<Program> program = make_shared<Program>();
 
@@ -82,6 +83,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     // 삭제
+    EffectManager::Delete();
     ShaderManager::Delete();
     StateManager::Delete();
     SRVManager::Delete();
