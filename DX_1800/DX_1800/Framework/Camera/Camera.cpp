@@ -7,7 +7,8 @@ Camera::Camera()
 	_view = make_shared<Transform>();
 	_projection = make_shared<MatrixBuffer>();
 
-	XMMATRIX projMatrix = XMMatrixOrthographicOffCenterLH(0,WIN_WIDTH,0,WIN_HEIGHT,0.0f, 1.0f);
+	//XMMATRIX projMatrix = XMMatrixOrthographicOffCenterLH(0,WIN_WIDTH,0,WIN_HEIGHT,0.0f, 1.0f);
+	XMMATRIX projMatrix = XMMatrixOrthographicLH(WIN_WIDTH,WIN_HEIGHT, 0.0f, 1.0f);
 	_projection->SetData(projMatrix);
 	_projection->Update_Resource();
 }
@@ -18,7 +19,10 @@ Camera::~Camera()
 
 void Camera::Update()
 {
-	FreeMode();
+	if(_target.expired())
+		FreeMode();
+	else
+		FollowMode();
 
 	Shake();
 
@@ -93,7 +97,7 @@ Vector2 Camera::GetWorldMousePos()
 {
 	XMMATRIX inverseMatrix = DirectX::XMMatrixInverse(nullptr, _view->GetSRT());
 
-	Vector2 mousePos = MOUSE_POS;
+	Vector2 mousePos = MOUSE_POS - CENTER;
 	return mousePos.TransformCoord(inverseMatrix);
 }
 
@@ -151,4 +155,21 @@ void Camera::FreeMode()
 
 void Camera::FollowMode()
 {
+	Vector2 targetPos = _target.lock()->GetWorldPos() - _offset;
+
+	if(targetPos.x < _leftBottom.x + WIN_WIDTH * 0.5f)
+		targetPos.x = _leftBottom.x + WIN_WIDTH * 0.5f;
+
+	if(targetPos.x > _rightTop.x - WIN_WIDTH * 0.5f)
+		targetPos.x = _rightTop.x - WIN_WIDTH * 0.5f;
+
+	if (targetPos.y < _leftBottom.y + WIN_HEIGHT * 0.5f)
+		targetPos.y = _leftBottom.y + WIN_HEIGHT * 0.5f;
+
+	if (targetPos.y > _rightTop.y - WIN_HEIGHT * 0.5f)
+		targetPos.y = _rightTop.y - WIN_HEIGHT * 0.5f;
+
+	Vector2 temp = LERP(-_view->GetWorldPos(), targetPos, 0.04f);
+
+	SetPosition(temp);
 }

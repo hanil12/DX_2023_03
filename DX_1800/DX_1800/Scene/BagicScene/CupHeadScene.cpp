@@ -7,7 +7,12 @@ CupHeadScene::CupHeadScene()
 {
 	_player = make_shared<CupHead>();
 	_bg = make_shared<CupBG>();
-	_bg->SetPosition(Vector2(CENTER.x, 100.0f));
+	_bg->SetPosition(Vector2(0.0f, -300.0f));
+
+	CAMERA->SetTarget(_player->GetCollider()->GetTransform());
+	CAMERA->SetLeftBottom(_bg->leftBottom());
+	CAMERA->SetRightTop(_bg->rightTop());
+	//CAMERA->SetOffset(Vector2(100,0));
 }
 
 CupHeadScene::~CupHeadScene()

@@ -13,7 +13,7 @@ Program::Program()
 {
 	srand(static_cast<unsigned int>(time(nullptr)));
 
-	_curScene = make_shared<DunGreedScene>();
+	_curScene = make_shared<CupHeadScene>();
 
 	Timer::GetInstance()->LockFPS(60);
 }

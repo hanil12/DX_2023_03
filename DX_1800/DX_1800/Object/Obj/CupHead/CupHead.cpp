@@ -13,7 +13,7 @@ CupHead::CupHead()
 	CreateAction("AimStraightShot", 0.1f, Action::END);
 	_actions[State::ATTACK]->SetEndEvent(std::bind(&CupHead::AttackEnd, this));
 
-	_col->GetTransform()->SetPosition(CENTER);
+	_col->GetTransform()->SetPosition(Vector2(0,0));
 
 	_transform->SetParent(_col->GetTransform());
 	_transform->SetPosition(Vector2(0,20));
