@@ -51,7 +51,6 @@ void CupHead::Update()
 	_bullet->Update();
 
 	_filterBuffer->Update_Resource();
-	_filterBuffer->_data.value2 += 1;
 }
 
 void CupHead::Render()

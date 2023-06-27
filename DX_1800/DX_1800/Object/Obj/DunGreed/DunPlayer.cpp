@@ -40,7 +40,7 @@ void DunPlayer::Update()
 
 	_bowSlot->Update();
 
-	Vector2 slotToMousePos = MOUSE_POS - _bowSlot->GetWorldPos();
+	Vector2 slotToMousePos = CAMERA->GetWorldMousePos() - _bowSlot->GetWorldPos();
 	float angle = slotToMousePos.Angle();
 
 	_bowSlot->SetAngle(angle);
@@ -66,7 +66,7 @@ void DunPlayer::InPut()
 	if (KEY_DOWN(VK_LBUTTON))
 	{
 		Vector2 start = _bowTrans->GetWorldPos();
-		Vector2 direction = (MOUSE_POS - start).NorMalVector2();
+		Vector2 direction = (CAMERA->GetWorldMousePos() - start).NorMalVector2();
 
 		auto iter = std::find_if(_bullets.begin(), _bullets.end(), [](shared_ptr<DunBullet> bullet)-> bool 
 		{

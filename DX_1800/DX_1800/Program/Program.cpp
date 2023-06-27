@@ -13,17 +13,7 @@ Program::Program()
 {
 	srand(static_cast<unsigned int>(time(nullptr)));
 
-	_curScene = make_shared<TutorialScene>();
-
-	_view = make_shared<MatrixBuffer>();
-	_proj = make_shared<MatrixBuffer>();
-
-	_view->Update_Resource();
-
-	XMMATRIX temp = XMMatrixOrthographicOffCenterLH(0, WIN_WIDTH, 0, WIN_HEIGHT, 0.0f, 1.0f);
-
-	_proj->SetData(temp);
-	_proj->Update_Resource();
+	_curScene = make_shared<DunGreedScene>();
 
 	Timer::GetInstance()->LockFPS(60);
 }
@@ -36,17 +26,19 @@ void Program::Update()
 {
 	Timer::GetInstance()->Update();
 	InputManager::GetInstance()->Update();
+	CAMERA->Update();
 	_curScene->Update();
 
 	EFFECT->Update();
+	SOUND->Update();
 }
 
 void Program::Render()
 {
 	Device::GetInstance()->Clear();
 
-	_view->SetVS_Buffer(1);
-	_proj->SetVS_Buffer(2);
+	CAMERA->SetViewBuffer();
+	CAMERA->SetProjectionBuffer();
 
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
@@ -59,6 +51,7 @@ void Program::Render()
 	ImGui::Text("FPS : %d", FPS);
 	ImGui::Text("DeltaTime : %1f", DELTA_TIME);
 	ImGui::Text("RunTime : %1f", RUN_TIME);
+	CAMERA->PostRender();
 	_curScene->PostRender();
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());

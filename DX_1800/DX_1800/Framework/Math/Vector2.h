@@ -130,4 +130,6 @@ public:
 	bool IsBetween(Vector2 a, Vector2 b);
 
 	int ManhattenDistance(const Vector2& other) const;
+
+	Vector2 TransformCoord(XMMATRIX matrix);
 };

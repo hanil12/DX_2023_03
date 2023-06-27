@@ -171,6 +171,39 @@
     <ClInclude Include="Object\BagicObject\EffectManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Library\FMOD\inc\fmod.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\FMOD\inc\fmod.hpp">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\FMOD\inc\fmod_codec.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\FMOD\inc\fmod_common.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\FMOD\inc\fmod_dsp.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\FMOD\inc\fmod_dsp_effects.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\FMOD\inc\fmod_errors.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\FMOD\inc\fmod_output.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Utility\SoundManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Camera\Camera.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Math\MathUtility.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX_1800.cpp">
@@ -314,6 +347,15 @@
     <ClCompile Include="Object\BagicObject\EffectManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Utility\SoundManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Camera\Camera.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Math\MathUtility.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1800.rc">
@@ -387,5 +429,26 @@
     <Xml Include="Resource\CupHead\AimStraightShot.xml" />
     <Xml Include="Resource\CupHead\Jump.xml" />
     <Xml Include="Resource\CupHead\Bullet_Loop.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fmod.dll" />
+    <None Include="Library\FMOD\inc\fmod.cs" />
+    <None Include="Library\FMOD\inc\fmod_dsp.cs" />
+    <None Include="Library\FMOD\inc\fmod_errors.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Library\FMOD\fmod_vc.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resource\Sound\attack.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="Resource\Sound\BGM.mp3" />
+    <Media Include="Resource\Sound\drumloop.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="Resource\Sound\jump.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
   </ItemGroup>
 </Project>
