@@ -5,12 +5,16 @@ Camera* Camera::_instance = nullptr;
 Camera::Camera()
 {
 	_view = make_shared<Transform>();
+	_uiView= make_shared<Transform>();
+	_uiView->Update();
 	_projection = make_shared<MatrixBuffer>();
 
 	//XMMATRIX projMatrix = XMMatrixOrthographicOffCenterLH(0,WIN_WIDTH,0,WIN_HEIGHT,0.0f, 1.0f);
 	XMMATRIX projMatrix = XMMatrixOrthographicLH(WIN_WIDTH,WIN_HEIGHT, 0.0f, 1.0f);
 	_projection->SetData(projMatrix);
 	_projection->Update_Resource();
+
+	SetViewPort(WIN_WIDTH, WIN_HEIGHT);
 }
 
 Camera::~Camera()
@@ -37,7 +41,8 @@ void Camera::PostRender()
 	}
 
 	Vector2 temp = GetWorldMousePos();
-	ImGui::Text("mousePos: { %.0f, %.0f }", temp.x, temp.y);
+	ImGui::Text("World_mousePos: { %.0f, %.0f }", temp.x, temp.y);
+	ImGui::Text("Win_mousePos: { %.0f, %.0f }", WIN_MOUSE_POS.x, WIN_MOUSE_POS.y);
 }
 
 void Camera::ShakeStart(float magnitude, float duration, float reduceDamping)
@@ -46,16 +51,29 @@ void Camera::ShakeStart(float magnitude, float duration, float reduceDamping)
 	_duration = duration;
 	_reduceDamping = reduceDamping;
 
-	_originPos = _view->GetWorldPos();
+	_originPos = -_view->GetWorldPos();
 }
 
 void Camera::SetViewPort(UINT width, UINT height)
 {
+	D3D11_VIEWPORT vp;
+	vp.Width = width;
+	vp.Height = height;
+	vp.MinDepth = 0.0f;
+	vp.MaxDepth = 1.0f;
+	vp.TopLeftX = 0;
+	vp.TopLeftY = 0;
+	DC->RSSetViewports(1, &vp);
 }
 
 void Camera::SetViewBuffer()
 {
 	_view->SetWorldBuffer(1);
+}
+
+void Camera::SetUIViewBuffer()
+{
+	_uiView->SetWorldBuffer(1);
 }
 
 void Camera::SetProjectionBuffer()
@@ -97,8 +115,13 @@ Vector2 Camera::GetWorldMousePos()
 {
 	XMMATRIX inverseMatrix = DirectX::XMMatrixInverse(nullptr, _view->GetSRT());
 
-	Vector2 mousePos = MOUSE_POS - CENTER;
+	Vector2 mousePos = WIN_MOUSE_POS - CENTER;
 	return mousePos.TransformCoord(inverseMatrix);
+}
+
+Vector2 Camera::GetScreenMousePos()
+{
+	return WIN_MOUSE_POS - CENTER;
 }
 
 void Camera::Shake()
