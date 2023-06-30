@@ -48,4 +48,6 @@ void DunGreedScene::Render()
 void DunGreedScene::PostRender()
 {
 	ImGui::Text("Monster HP : %d", _monster->_hp);
+
+	_monster->PostRender();
 }

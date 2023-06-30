@@ -156,3 +156,22 @@ public:
 	Data _data;
 };
 
+class BarBuffer : public ConstantBuffer
+{
+public:
+	struct Data
+	{
+		float ratio = 0.0f;
+		int padding[3];
+	};
+
+	BarBuffer()
+		: ConstantBuffer(&_data, sizeof(_data))
+	{
+	}
+
+	virtual ~BarBuffer() {}
+
+	Data _data;
+};
+

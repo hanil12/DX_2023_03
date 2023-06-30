@@ -98,6 +98,7 @@ using namespace Microsoft::WRL;
 
 // UI
 #include "Object/UI/Button.h"
+#include "Object/UI/HpBar.h"
 
 // GameObj
 #include "Object/Obj/Planet.h"

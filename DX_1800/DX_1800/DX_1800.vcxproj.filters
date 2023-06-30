@@ -207,6 +207,9 @@
     <ClInclude Include="Object\UI\Button.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Object\UI\HpBar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX_1800.cpp">
@@ -362,6 +365,9 @@
     <ClCompile Include="Object\UI\Button.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Object\UI\HpBar.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX_1800.rc">
@@ -432,6 +438,7 @@
     <FxCompile Include="Shader\FilterPS.hlsl" />
     <FxCompile Include="Shader\CupHeadPS.hlsl" />
     <FxCompile Include="Shader\ButtonPS.hlsl" />
+    <FxCompile Include="Shader\HpBarPS.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resource\CupHead\Idle.xml" />
